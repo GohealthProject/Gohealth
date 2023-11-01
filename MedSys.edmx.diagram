@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="259f293395fe4b038cf739cee749dda4" Name="Diagram1" ZoomLevel="215">
+        <EntityTypeShape EntityType="MedSysModel.BlogCategory" Width="1.5" PointX="3.75" PointY="19.125" />
+        <EntityTypeShape EntityType="MedSysModel.BlogManagement" Width="1.5" PointX="1.5" PointY="19" />
+        <EntityTypeShape EntityType="MedSysModel.Blog" Width="1.5" PointX="6" PointY="20.125" />
+        <EntityTypeShape EntityType="MedSysModel.Comment" Width="1.5" PointX="8.25" PointY="7" />
+        <EntityTypeShape EntityType="MedSysModel.Corporation" Width="1.5" PointX="0.75" PointY="11.375" />
+        <EntityTypeShape EntityType="MedSysModel.EmployeeClass" Width="1.5" PointX="1.5" PointY="21.875" />
+        <EntityTypeShape EntityType="MedSysModel.Employee" Width="1.5" PointX="3.75" PointY="21.375" />
+        <EntityTypeShape EntityType="MedSysModel.HealthReport" Width="1.5" PointX="8.25" PointY="11.25" />
+        <EntityTypeShape EntityType="MedSysModel.Item" Width="1.5" PointX="8.25" PointY="3.375" />
+        <EntityTypeShape EntityType="MedSysModel.Member" Width="1.5" PointX="3" PointY="10.625" />
+        <EntityTypeShape EntityType="MedSysModel.Order" Width="1.5" PointX="5.25" PointY="11" />
+        <EntityTypeShape EntityType="MedSysModel.OrderDetail" Width="1.5" PointX="7.5" PointY="15.5" />
+        <EntityTypeShape EntityType="MedSysModel.OrderPay" Width="1.5" PointX="3" PointY="4.5" />
+        <EntityTypeShape EntityType="MedSysModel.OrderShip" Width="1.5" PointX="3" PointY="15.75" />
+        <EntityTypeShape EntityType="MedSysModel.OrderState" Width="1.5" PointX="3" PointY="25.125" />
+        <EntityTypeShape EntityType="MedSysModel.Plan" Width="1.5" PointX="3" PointY="7.625" />
+        <EntityTypeShape EntityType="MedSysModel.PlanRef" Width="1.5" PointX="11.25" PointY="0.75" />
+        <EntityTypeShape EntityType="MedSysModel.Product" Width="1.5" PointX="5.25" PointY="15.375" />
+        <EntityTypeShape EntityType="MedSysModel.ProductsCategory" Width="1.5" PointX="6.25" PointY="24.875" />
+        <EntityTypeShape EntityType="MedSysModel.ProductsClassification" Width="1.5" PointX="8.5" PointY="18.75" />
+        <EntityTypeShape EntityType="MedSysModel.Project" Width="1.5" PointX="6" PointY="3.75" />
+        <EntityTypeShape EntityType="MedSysModel.ReportDetail" Width="1.5" PointX="10.5" PointY="11.5" />
+        <EntityTypeShape EntityType="MedSysModel.Reserve" Width="1.5" PointX="5.25" PointY="7.375" />
+        <EntityTypeShape EntityType="MedSysModel.ReservedSub" Width="1.5" PointX="10.5" PointY="7.75" />
+        <EntityTypeShape EntityType="MedSysModel.subProjectBridge" Width="1.5" PointX="10.5" PointY="3.75" />
+        <EntityTypeShape EntityType="MedSysModel.sysdiagram" Width="1.5" PointX="10.75" PointY="14.75" />
+        <EntityTypeShape EntityType="MedSysModel.ItemRangeWord" Width="1.5" PointX="12.75" PointY="4.75" />
+        <AssociationConnector Association="MedSysModel.FK_Blog_ArticleCat" />
+        <AssociationConnector Association="MedSysModel.FK_EmployeeClass_BlogManagement" />
+        <AssociationConnector Association="MedSysModel.FK__Comments__BlogID__4924D839" />
+        <AssociationConnector Association="MedSysModel.FK_Blog_Employee" />
+        <AssociationConnector Association="MedSysModel.FK__Comments__Employ__4B0D20AB" />
+        <AssociationConnector Association="MedSysModel.FK__Comments__Parent__4C0144E4" />
+        <AssociationConnector Association="MedSysModel.FK_Comments_Members1" />
+        <AssociationConnector Association="MedSysModel.FK_Member_Corporation" />
+        <AssociationConnector Association="MedSysModel.FK_Employee_EmployeeClass" />
+        <AssociationConnector Association="MedSysModel.FK_HealthReport_Member" />
+        <AssociationConnector Association="MedSysModel.FK_HealthReport_Plan" />
+        <AssociationConnector Association="MedSysModel.FK_HealthReport_Reserve" />
+        <AssociationConnector Association="MedSysModel.FK_ReportDetail_HealthReport" />
+        <AssociationConnector Association="MedSysModel.FK_ReportDetail_HealthReport1" />
+        <AssociationConnector Association="MedSysModel.FK_Item__subproject" />
+        <AssociationConnector Association="MedSysModel.FK_ReportDetail_Item_" />
+        <AssociationConnector Association="MedSysModel.FK_ReservedSub_Item_" />
+        <AssociationConnector Association="MedSysModel.FK_subProjectBridges_Item_" />
+        <AssociationConnector Association="MedSysModel.FK_Order_Member" />
+        <AssociationConnector Association="MedSysModel.FK_Reserve_Members" />
+        <AssociationConnector Association="MedSysModel.FK_Order_OrderPay" />
+        <AssociationConnector Association="MedSysModel.FK_Order_OrderShip" />
+        <AssociationConnector Association="MedSysModel.FK_Order_OrderState" />
+        <AssociationConnector Association="MedSysModel.FK_OrderDetails_Order" />
+        <AssociationConnector Association="MedSysModel.FK_OrderDetails_Products" />
+        <AssociationConnector Association="MedSysModel.FK_Planbrigee_Plan" />
+        <AssociationConnector Association="MedSysModel.FK_Reserve_Plan" />
+        <AssociationConnector Association="MedSysModel.FK_Planbrigee_subproject" />
+        <AssociationConnector Association="MedSysModel.FK_ProductsClassification_Products" />
+        <AssociationConnector Association="MedSysModel.FK_ProductsClassification_ProductsCategories" />
+        <AssociationConnector Association="MedSysModel.FK_subProjectBridges_subproject" />
+        <AssociationConnector Association="MedSysModel.FK_ReservedSub_Reserve" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

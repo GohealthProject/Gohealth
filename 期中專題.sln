@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33502.453
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "期中專題", "期中專題\期中專題.csproj", "{E1A63A47-0ACD-431D-8604-7992468F77C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E1A63A47-0ACD-431D-8604-7992468F77C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1A63A47-0ACD-431D-8604-7992468F77C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1A63A47-0ACD-431D-8604-7992468F77C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1A63A47-0ACD-431D-8604-7992468F77C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {19FB165F-3CC6-4CB1-BC4A-52D6F9D64FB5}
+	EndGlobalSection
+EndGlobal

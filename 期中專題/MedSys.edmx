@@ -1,0 +1,2041 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MedSysModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BlogCategory">
+          <Key>
+            <PropertyRef Name="BlogClassID" />
+          </Key>
+          <Property Name="BlogClassID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogCategory" Type="nvarchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BlogManagement">
+          <Key>
+            <PropertyRef Name="BlogPermissionID" />
+          </Key>
+          <Property Name="BlogPermissionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PermissionType" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Blogs">
+          <Key>
+            <PropertyRef Name="BlogID" />
+          </Key>
+          <Property Name="BlogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ArticleClassID" Type="int" Nullable="false" />
+          <Property Name="Views" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="smalldatetime" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="BlogImage" Type="varbinary(max)" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Name="CommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BlogID" Type="int" Nullable="false" />
+          <Property Name="MemberID" Type="int" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="ParentCommentID" Type="int" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedAt" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Corporation">
+          <Key>
+            <PropertyRef Name="taxID" />
+          </Key>
+          <Property Name="taxID" Type="int" Nullable="false" />
+          <Property Name="corporation" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="discount" Type="float" />
+          <Property Name="contactnumber" Type="int" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="middleman" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeeClass">
+          <Key>
+            <PropertyRef Name="EmployeeClassID" />
+          </Key>
+          <Property Name="EmployeeClassID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Class" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BlogPermissionID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmployeeClassID" Type="int" Nullable="false" />
+          <Property Name="EmployeeBirthDate" Type="date" />
+          <Property Name="EmployeePhoneNum" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="EmployeeEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmployeePassWord" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmployeePhoto" Type="image" />
+        </EntityType>
+        <EntityType Name="HealthReport">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberID" Type="int" />
+          <Property Name="ReportDate" Type="date" />
+          <Property Name="PlanID" Type="int" />
+          <Property Name="ReserveID" Type="int" />
+          <Property Name="Paymentstatus" Type="int" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="itemID" />
+          </Key>
+          <Property Name="itemID" Type="int" Nullable="false" />
+          <Property Name="itemName" Type="nvarchar" MaxLength="255" />
+          <Property Name="itemComment" Type="nvarchar" MaxLength="255" />
+          <Property Name="itemPrice" Type="int" />
+          <Property Name="projectID" Type="int" />
+          <Property Name="itemUnit" Type="nvarchar" MaxLength="50" />
+          <Property Name="itemRangeMin" Type="int" />
+          <Property Name="itemRangeMax" Type="int" />
+          <Property Name="Mmin" Type="int" />
+          <Property Name="Mmax" Type="int" />
+          <Property Name="Fmin" Type="int" />
+          <Property Name="Fmax" Type="int" />
+          <Property Name="itemRange" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="memberId" />
+          </Key>
+          <Property Name="memberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="memberName" Type="nchar" MaxLength="10" />
+          <Property Name="memberGender" Type="nchar" MaxLength="10" />
+          <Property Name="memberBirthdate" Type="date" />
+          <Property Name="memberPhone" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="memberEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="memberAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="memberContactNumber" Type="nchar" MaxLength="10" />
+          <Property Name="memberNickname" Type="nchar" MaxLength="10" />
+          <Property Name="memberPassword" Type="nvarchar" MaxLength="50" />
+          <Property Name="taxID" Type="int" />
+          <Property Name="memberAccount" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="orderID" />
+          </Key>
+          <Property Name="orderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="orderDate" Type="date" Nullable="false" />
+          <Property Name="memberId" Type="int" />
+          <Property Name="shipID" Type="int" />
+          <Property Name="payID" Type="int" />
+          <Property Name="stateID" Type="int" />
+          <Property Name="shipDate" Type="date" />
+          <Property Name="deliveryDate" Type="date" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+          </Key>
+          <Property Name="OrderDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="orderID" Type="int" />
+          <Property Name="productID" Type="int" />
+          <Property Name="unitPrice" Type="money" />
+          <Property Name="quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="OrderPay">
+          <Key>
+            <PropertyRef Name="PayID" />
+          </Key>
+          <Property Name="PayID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PayName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="OrderShip">
+          <Key>
+            <PropertyRef Name="shipID" />
+          </Key>
+          <Property Name="shipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="shipName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="OrderState">
+          <Key>
+            <PropertyRef Name="stateID" />
+          </Key>
+          <Property Name="stateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stateName" Type="nvarchar" MaxLength="50" />
+          <Property Name="stateDetailed" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Plan">
+          <Key>
+            <PropertyRef Name="planId" />
+          </Key>
+          <Property Name="planId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="planName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="planDescription" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PlanRef">
+          <Key>
+            <PropertyRef Name="planbridgeId" />
+          </Key>
+          <Property Name="planbridgeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="planID" Type="int" Nullable="false" />
+          <Property Name="projectID" Type="int" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar(max)" />
+          <Property Name="UnitPrice" Type="money" />
+          <Property Name="License" Type="nvarchar(max)" />
+          <Property Name="Ingredient" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Photo" Type="image" />
+          <Property Name="UnitsInStock" Type="int" />
+          <Property Name="Discontinued" Type="bit" />
+        </EntityType>
+        <EntityType Name="ProductsCategories">
+          <Key>
+            <PropertyRef Name="CategoriesID" />
+          </Key>
+          <Property Name="CategoriesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoriesName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ProductsClassification">
+          <Key>
+            <PropertyRef Name="ProductsClassification" />
+          </Key>
+          <Property Name="ProductsClassification" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="CategoriesID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="projectID" />
+          </Key>
+          <Property Name="projectID" Type="int" Nullable="false" />
+          <Property Name="ProjectName" Type="nvarchar" MaxLength="255" />
+          <Property Name="projectContent" Type="nvarchar" MaxLength="255" />
+          <Property Name="projectPrice" Type="float" />
+        </EntityType>
+        <EntityType Name="ReportDetail">
+          <Key>
+            <PropertyRef Name="ReportDetailID" />
+          </Key>
+          <Property Name="ReportDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReportID" Type="int" />
+          <Property Name="itemID" Type="int" />
+          <Property Name="result" Type="nvarchar(max)" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'MedSys.dbo.ReportDetail2' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'MedSys.dbo.ReportTest' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="ReportTest">
+          <Key>
+            <PropertyRef Name="ReportDetailID" />
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportDetailID" Type="int" Nullable="false" />
+          <Property Name="ReportID" Type="int" Nullable="false" />
+          <Property Name="itemID" Type="int" />
+          <Property Name="result" Type="text" />
+        </EntityType>
+        <EntityType Name="Reserve">
+          <Key>
+            <PropertyRef Name="ReserveID" />
+          </Key>
+          <Property Name="ReserveID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="memberID" Type="int" />
+          <Property Name="planID" Type="int" />
+          <Property Name="ReserveDate" Type="date" />
+          <Property Name="ReserveState" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ReservedSub">
+          <Key>
+            <PropertyRef Name="subreservedID" />
+          </Key>
+          <Property Name="subreservedID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="reservedID" Type="int" Nullable="false" />
+          <Property Name="itemID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="subProjectBridges">
+          <Key>
+            <PropertyRef Name="SubProjectBridgeID" />
+          </Key>
+          <Property Name="SubProjectBridgeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectID" Type="int" />
+          <Property Name="ItemID" Type="int" />
+        </EntityType>
+        <Association Name="FK__Comments__BlogID__4924D839">
+          <End Role="Blogs" Type="Self.Blogs" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blogs">
+              <PropertyRef Name="BlogID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="BlogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comments__Employ__4B0D20AB">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comments__Parent__4C0144E4">
+          <End Role="Comments" Type="Self.Comments" Multiplicity="0..1" />
+          <End Role="Comments1" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comments">
+              <PropertyRef Name="CommentID" />
+            </Principal>
+            <Dependent Role="Comments1">
+              <PropertyRef Name="ParentCommentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Blog_ArticleCat">
+          <End Role="BlogCategory" Type="Self.BlogCategory" Multiplicity="1" />
+          <End Role="Blogs" Type="Self.Blogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BlogCategory">
+              <PropertyRef Name="BlogClassID" />
+            </Principal>
+            <Dependent Role="Blogs">
+              <PropertyRef Name="ArticleClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Blog_Employee">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Blogs" Type="Self.Blogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Blogs">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Members1">
+          <End Role="Members" Type="Self.Members" Multiplicity="0..1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="memberId" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_EmployeeClass">
+          <End Role="EmployeeClass" Type="Self.EmployeeClass" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeClass">
+              <PropertyRef Name="EmployeeClassID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="EmployeeClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeClass_BlogManagement">
+          <End Role="BlogManagement" Type="Self.BlogManagement" Multiplicity="1" />
+          <End Role="EmployeeClass" Type="Self.EmployeeClass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BlogManagement">
+              <PropertyRef Name="BlogPermissionID" />
+            </Principal>
+            <Dependent Role="EmployeeClass">
+              <PropertyRef Name="BlogPermissionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HealthReport_Member">
+          <End Role="Members" Type="Self.Members" Multiplicity="0..1" />
+          <End Role="HealthReport" Type="Self.HealthReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="memberId" />
+            </Principal>
+            <Dependent Role="HealthReport">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HealthReport_Plan">
+          <End Role="Plan" Type="Self.Plan" Multiplicity="0..1" />
+          <End Role="HealthReport" Type="Self.HealthReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan">
+              <PropertyRef Name="planId" />
+            </Principal>
+            <Dependent Role="HealthReport">
+              <PropertyRef Name="PlanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HealthReport_Reserve">
+          <End Role="Reserve" Type="Self.Reserve" Multiplicity="0..1" />
+          <End Role="HealthReport" Type="Self.HealthReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reserve">
+              <PropertyRef Name="ReserveID" />
+            </Principal>
+            <Dependent Role="HealthReport">
+              <PropertyRef Name="ReserveID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item$_subproject">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="projectID" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="projectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_Corporation">
+          <End Role="Corporation" Type="Self.Corporation" Multiplicity="0..1" />
+          <End Role="Members" Type="Self.Members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Corporation">
+              <PropertyRef Name="taxID" />
+            </Principal>
+            <Dependent Role="Members">
+              <PropertyRef Name="taxID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Member">
+          <End Role="Members" Type="Self.Members" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="memberId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="memberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_OrderPay">
+          <End Role="OrderPay" Type="Self.OrderPay" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderPay">
+              <PropertyRef Name="PayID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="payID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_OrderShip">
+          <End Role="OrderShip" Type="Self.OrderShip" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderShip">
+              <PropertyRef Name="shipID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="shipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_OrderState">
+          <End Role="OrderState" Type="Self.OrderState" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderState">
+              <PropertyRef Name="stateID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="stateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="orderID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="orderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Planbrigee_subproject">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="PlanRef" Type="Self.PlanRef" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="projectID" />
+            </Principal>
+            <Dependent Role="PlanRef">
+              <PropertyRef Name="projectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlanRef_Plan">
+          <End Role="Plan" Type="Self.Plan" Multiplicity="1" />
+          <End Role="PlanRef" Type="Self.PlanRef" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan">
+              <PropertyRef Name="planId" />
+            </Principal>
+            <Dependent Role="PlanRef">
+              <PropertyRef Name="planID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsClassification_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ProductsClassification" Type="Self.ProductsClassification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductsClassification">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsClassification_ProductsCategories">
+          <End Role="ProductsCategories" Type="Self.ProductsCategories" Multiplicity="1" />
+          <End Role="ProductsClassification" Type="Self.ProductsClassification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductsCategories">
+              <PropertyRef Name="CategoriesID" />
+            </Principal>
+            <Dependent Role="ProductsClassification">
+              <PropertyRef Name="CategoriesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportDetail_HealthReport">
+          <End Role="HealthReport" Type="Self.HealthReport" Multiplicity="0..1" />
+          <End Role="ReportDetail" Type="Self.ReportDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HealthReport">
+              <PropertyRef Name="ReportID" />
+            </Principal>
+            <Dependent Role="ReportDetail">
+              <PropertyRef Name="ReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportDetail_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
+          <End Role="ReportDetail" Type="Self.ReportDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="itemID" />
+            </Principal>
+            <Dependent Role="ReportDetail">
+              <PropertyRef Name="itemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportTest_HealthReport">
+          <End Role="HealthReport" Type="Self.HealthReport" Multiplicity="1" />
+          <End Role="ReportTest" Type="Self.ReportTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HealthReport">
+              <PropertyRef Name="ReportID" />
+            </Principal>
+            <Dependent Role="ReportTest">
+              <PropertyRef Name="ReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportTest_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
+          <End Role="ReportTest" Type="Self.ReportTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="itemID" />
+            </Principal>
+            <Dependent Role="ReportTest">
+              <PropertyRef Name="itemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reserve_Members">
+          <End Role="Members" Type="Self.Members" Multiplicity="0..1" />
+          <End Role="Reserve" Type="Self.Reserve" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="memberId" />
+            </Principal>
+            <Dependent Role="Reserve">
+              <PropertyRef Name="memberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reserve_Plan">
+          <End Role="Plan" Type="Self.Plan" Multiplicity="0..1" />
+          <End Role="Reserve" Type="Self.Reserve" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan">
+              <PropertyRef Name="planId" />
+            </Principal>
+            <Dependent Role="Reserve">
+              <PropertyRef Name="planID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReservedSub_Item$">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="ReservedSub" Type="Self.ReservedSub" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="itemID" />
+            </Principal>
+            <Dependent Role="ReservedSub">
+              <PropertyRef Name="itemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReservedSub_Reserve">
+          <End Role="Reserve" Type="Self.Reserve" Multiplicity="1" />
+          <End Role="ReservedSub" Type="Self.ReservedSub" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reserve">
+              <PropertyRef Name="ReserveID" />
+            </Principal>
+            <Dependent Role="ReservedSub">
+              <PropertyRef Name="reservedID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_subProjectBridges_Item$">
+          <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
+          <End Role="subProjectBridges" Type="Self.subProjectBridges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="itemID" />
+            </Principal>
+            <Dependent Role="subProjectBridges">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_subProjectBridges_subproject">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="subProjectBridges" Type="Self.subProjectBridges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="projectID" />
+            </Principal>
+            <Dependent Role="subProjectBridges">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MedSysModelStoreContainer">
+          <EntitySet Name="BlogCategory" EntityType="Self.BlogCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BlogManagement" EntityType="Self.BlogManagement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Blogs" EntityType="Self.Blogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Corporation" EntityType="Self.Corporation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeClass" EntityType="Self.EmployeeClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HealthReport" EntityType="Self.HealthReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderPay" EntityType="Self.OrderPay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderShip" EntityType="Self.OrderShip" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderState" EntityType="Self.OrderState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plan" EntityType="Self.Plan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlanRef" EntityType="Self.PlanRef" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductsCategories" EntityType="Self.ProductsCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductsClassification" EntityType="Self.ProductsClassification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReportDetail" EntityType="Self.ReportDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reserve" EntityType="Self.Reserve" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReservedSub" EntityType="Self.ReservedSub" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="subProjectBridges" EntityType="Self.subProjectBridges" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReportTest" EntityType="Self.ReportTest" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ReportTest].[ReportDetailID] AS [ReportDetailID], 
+    [ReportTest].[ReportID] AS [ReportID], 
+    [ReportTest].[itemID] AS [itemID], 
+    [ReportTest].[result] AS [result]
+    FROM [dbo].[ReportTest] AS [ReportTest]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Comments__BlogID__4924D839" Association="Self.FK__Comments__BlogID__4924D839">
+            <End Role="Blogs" EntitySet="Blogs" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comments__Employ__4B0D20AB" Association="Self.FK__Comments__Employ__4B0D20AB">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comments__Parent__4C0144E4" Association="Self.FK__Comments__Parent__4C0144E4">
+            <End Role="Comments" EntitySet="Comments" />
+            <End Role="Comments1" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Blog_ArticleCat" Association="Self.FK_Blog_ArticleCat">
+            <End Role="BlogCategory" EntitySet="BlogCategory" />
+            <End Role="Blogs" EntitySet="Blogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Blog_Employee" Association="Self.FK_Blog_Employee">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Blogs" EntitySet="Blogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Members1" Association="Self.FK_Comments_Members1">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_EmployeeClass" Association="Self.FK_Employee_EmployeeClass">
+            <End Role="EmployeeClass" EntitySet="EmployeeClass" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeClass_BlogManagement" Association="Self.FK_EmployeeClass_BlogManagement">
+            <End Role="BlogManagement" EntitySet="BlogManagement" />
+            <End Role="EmployeeClass" EntitySet="EmployeeClass" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HealthReport_Member" Association="Self.FK_HealthReport_Member">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="HealthReport" EntitySet="HealthReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HealthReport_Plan" Association="Self.FK_HealthReport_Plan">
+            <End Role="Plan" EntitySet="Plan" />
+            <End Role="HealthReport" EntitySet="HealthReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HealthReport_Reserve" Association="Self.FK_HealthReport_Reserve">
+            <End Role="Reserve" EntitySet="Reserve" />
+            <End Role="HealthReport" EntitySet="HealthReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item$_subproject" Association="Self.FK_Item$_subproject">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_Corporation" Association="Self.FK_Member_Corporation">
+            <End Role="Corporation" EntitySet="Corporation" />
+            <End Role="Members" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Member" Association="Self.FK_Order_Member">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_OrderPay" Association="Self.FK_Order_OrderPay">
+            <End Role="OrderPay" EntitySet="OrderPay" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_OrderShip" Association="Self.FK_Order_OrderShip">
+            <End Role="OrderShip" EntitySet="OrderShip" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_OrderState" Association="Self.FK_Order_OrderState">
+            <End Role="OrderState" EntitySet="OrderState" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Order" Association="Self.FK_OrderDetails_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Products" Association="Self.FK_OrderDetails_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Planbrigee_subproject" Association="Self.FK_Planbrigee_subproject">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="PlanRef" EntitySet="PlanRef" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlanRef_Plan" Association="Self.FK_PlanRef_Plan">
+            <End Role="Plan" EntitySet="Plan" />
+            <End Role="PlanRef" EntitySet="PlanRef" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsClassification_Products" Association="Self.FK_ProductsClassification_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductsClassification" EntitySet="ProductsClassification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsClassification_ProductsCategories" Association="Self.FK_ProductsClassification_ProductsCategories">
+            <End Role="ProductsCategories" EntitySet="ProductsCategories" />
+            <End Role="ProductsClassification" EntitySet="ProductsClassification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportDetail_HealthReport" Association="Self.FK_ReportDetail_HealthReport">
+            <End Role="HealthReport" EntitySet="HealthReport" />
+            <End Role="ReportDetail" EntitySet="ReportDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportDetail_Item" Association="Self.FK_ReportDetail_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="ReportDetail" EntitySet="ReportDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportTest_HealthReport" Association="Self.FK_ReportTest_HealthReport">
+            <End Role="HealthReport" EntitySet="HealthReport" />
+            <End Role="ReportTest" EntitySet="ReportTest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportTest_Item" Association="Self.FK_ReportTest_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="ReportTest" EntitySet="ReportTest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reserve_Members" Association="Self.FK_Reserve_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="Reserve" EntitySet="Reserve" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reserve_Plan" Association="Self.FK_Reserve_Plan">
+            <End Role="Plan" EntitySet="Plan" />
+            <End Role="Reserve" EntitySet="Reserve" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReservedSub_Item$" Association="Self.FK_ReservedSub_Item$">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="ReservedSub" EntitySet="ReservedSub" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReservedSub_Reserve" Association="Self.FK_ReservedSub_Reserve">
+            <End Role="Reserve" EntitySet="Reserve" />
+            <End Role="ReservedSub" EntitySet="ReservedSub" />
+          </AssociationSet>
+          <AssociationSet Name="FK_subProjectBridges_Item$" Association="Self.FK_subProjectBridges_Item$">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="subProjectBridges" EntitySet="subProjectBridges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_subProjectBridges_subproject" Association="Self.FK_subProjectBridges_subproject">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="subProjectBridges" EntitySet="subProjectBridges" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MedSysModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MedSysEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BlogCategories" EntityType="MedSysModel.BlogCategory" />
+          <EntitySet Name="BlogManagements" EntityType="MedSysModel.BlogManagement" />
+          <EntitySet Name="Blogs" EntityType="MedSysModel.Blog" />
+          <EntitySet Name="Comments" EntityType="MedSysModel.Comment" />
+          <EntitySet Name="Corporations" EntityType="MedSysModel.Corporation" />
+          <EntitySet Name="EmployeeClasses" EntityType="MedSysModel.EmployeeClass" />
+          <EntitySet Name="Employees" EntityType="MedSysModel.Employee" />
+          <EntitySet Name="HealthReports" EntityType="MedSysModel.HealthReport" />
+          <EntitySet Name="Items" EntityType="MedSysModel.Item" />
+          <EntitySet Name="Members" EntityType="MedSysModel.Member" />
+          <EntitySet Name="Orders" EntityType="MedSysModel.Order" />
+          <EntitySet Name="OrderDetails" EntityType="MedSysModel.OrderDetail" />
+          <EntitySet Name="OrderPays" EntityType="MedSysModel.OrderPay" />
+          <EntitySet Name="OrderShips" EntityType="MedSysModel.OrderShip" />
+          <EntitySet Name="OrderStates" EntityType="MedSysModel.OrderState" />
+          <EntitySet Name="Plans" EntityType="MedSysModel.Plan" />
+          <EntitySet Name="PlanRefs" EntityType="MedSysModel.PlanRef" />
+          <EntitySet Name="Products" EntityType="MedSysModel.Product" />
+          <EntitySet Name="ProductsCategories" EntityType="MedSysModel.ProductsCategory" />
+          <EntitySet Name="ProductsClassifications" EntityType="MedSysModel.ProductsClassification" />
+          <EntitySet Name="Projects" EntityType="MedSysModel.Project" />
+          <EntitySet Name="ReportDetails" EntityType="MedSysModel.ReportDetail" />
+          <EntitySet Name="Reserves" EntityType="MedSysModel.Reserve" />
+          <EntitySet Name="ReservedSubs" EntityType="MedSysModel.ReservedSub" />
+          <EntitySet Name="subProjectBridges" EntityType="MedSysModel.subProjectBridge" />
+          <EntitySet Name="ReportTests" EntityType="MedSysModel.ReportTest" />
+          <AssociationSet Name="FK_Blog_ArticleCat" Association="MedSysModel.FK_Blog_ArticleCat">
+            <End Role="BlogCategory" EntitySet="BlogCategories" />
+            <End Role="Blog" EntitySet="Blogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeClass_BlogManagement" Association="MedSysModel.FK_EmployeeClass_BlogManagement">
+            <End Role="BlogManagement" EntitySet="BlogManagements" />
+            <End Role="EmployeeClass" EntitySet="EmployeeClasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comments__BlogID__4924D839" Association="MedSysModel.FK__Comments__BlogID__4924D839">
+            <End Role="Blog" EntitySet="Blogs" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Blog_Employee" Association="MedSysModel.FK_Blog_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Blog" EntitySet="Blogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comments__Employ__4B0D20AB" Association="MedSysModel.FK__Comments__Employ__4B0D20AB">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Comments__Parent__4C0144E4" Association="MedSysModel.FK__Comments__Parent__4C0144E4">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="Comment1" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comments_Members1" Association="MedSysModel.FK_Comments_Members1">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_Corporation" Association="MedSysModel.FK_Member_Corporation">
+            <End Role="Corporation" EntitySet="Corporations" />
+            <End Role="Member" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_EmployeeClass" Association="MedSysModel.FK_Employee_EmployeeClass">
+            <End Role="EmployeeClass" EntitySet="EmployeeClasses" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HealthReport_Member" Association="MedSysModel.FK_HealthReport_Member">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="HealthReport" EntitySet="HealthReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HealthReport_Plan" Association="MedSysModel.FK_HealthReport_Plan">
+            <End Role="Plan" EntitySet="Plans" />
+            <End Role="HealthReport" EntitySet="HealthReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HealthReport_Reserve" Association="MedSysModel.FK_HealthReport_Reserve">
+            <End Role="Reserve" EntitySet="Reserves" />
+            <End Role="HealthReport" EntitySet="HealthReports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportDetail_HealthReport" Association="MedSysModel.FK_ReportDetail_HealthReport">
+            <End Role="HealthReport" EntitySet="HealthReports" />
+            <End Role="ReportDetail" EntitySet="ReportDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportTest_HealthReport" Association="MedSysModel.FK_ReportTest_HealthReport">
+            <End Role="HealthReport" EntitySet="HealthReports" />
+            <End Role="ReportTest" EntitySet="ReportTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item__subproject" Association="MedSysModel.FK_Item__subproject">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportDetail_Item" Association="MedSysModel.FK_ReportDetail_Item">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="ReportDetail" EntitySet="ReportDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportTest_Item" Association="MedSysModel.FK_ReportTest_Item">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="ReportTest" EntitySet="ReportTests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReservedSub_Item_" Association="MedSysModel.FK_ReservedSub_Item_">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="ReservedSub" EntitySet="ReservedSubs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_subProjectBridges_Item_" Association="MedSysModel.FK_subProjectBridges_Item_">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="subProjectBridge" EntitySet="subProjectBridges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Member" Association="MedSysModel.FK_Order_Member">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reserve_Members" Association="MedSysModel.FK_Reserve_Members">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="Reserve" EntitySet="Reserves" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_OrderPay" Association="MedSysModel.FK_Order_OrderPay">
+            <End Role="OrderPay" EntitySet="OrderPays" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_OrderShip" Association="MedSysModel.FK_Order_OrderShip">
+            <End Role="OrderShip" EntitySet="OrderShips" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_OrderState" Association="MedSysModel.FK_Order_OrderState">
+            <End Role="OrderState" EntitySet="OrderStates" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Order" Association="MedSysModel.FK_OrderDetails_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Products" Association="MedSysModel.FK_OrderDetails_Products">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlanRef_Plan" Association="MedSysModel.FK_PlanRef_Plan">
+            <End Role="Plan" EntitySet="Plans" />
+            <End Role="PlanRef" EntitySet="PlanRefs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reserve_Plan" Association="MedSysModel.FK_Reserve_Plan">
+            <End Role="Plan" EntitySet="Plans" />
+            <End Role="Reserve" EntitySet="Reserves" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Planbrigee_subproject" Association="MedSysModel.FK_Planbrigee_subproject">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="PlanRef" EntitySet="PlanRefs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsClassification_Products" Association="MedSysModel.FK_ProductsClassification_Products">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductsClassification" EntitySet="ProductsClassifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsClassification_ProductsCategories" Association="MedSysModel.FK_ProductsClassification_ProductsCategories">
+            <End Role="ProductsCategory" EntitySet="ProductsCategories" />
+            <End Role="ProductsClassification" EntitySet="ProductsClassifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_subProjectBridges_subproject" Association="MedSysModel.FK_subProjectBridges_subproject">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="subProjectBridge" EntitySet="subProjectBridges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReservedSub_Reserve" Association="MedSysModel.FK_ReservedSub_Reserve">
+            <End Role="Reserve" EntitySet="Reserves" />
+            <End Role="ReservedSub" EntitySet="ReservedSubs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BlogCategory">
+          <Key>
+            <PropertyRef Name="BlogClassID" />
+          </Key>
+          <Property Name="BlogClassID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogCategory1" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Blogs" Relationship="MedSysModel.FK_Blog_ArticleCat" FromRole="BlogCategory" ToRole="Blog" />
+        </EntityType>
+        <EntityType Name="BlogManagement">
+          <Key>
+            <PropertyRef Name="BlogPermissionID" />
+          </Key>
+          <Property Name="BlogPermissionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PermissionType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EmployeeClasses" Relationship="MedSysModel.FK_EmployeeClass_BlogManagement" FromRole="BlogManagement" ToRole="EmployeeClass" />
+        </EntityType>
+        <EntityType Name="Blog">
+          <Key>
+            <PropertyRef Name="BlogID" />
+          </Key>
+          <Property Name="BlogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ArticleClassID" Type="Int32" Nullable="false" />
+          <Property Name="Views" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BlogImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BlogCategory" Relationship="MedSysModel.FK_Blog_ArticleCat" FromRole="Blog" ToRole="BlogCategory" />
+          <NavigationProperty Name="Comments" Relationship="MedSysModel.FK__Comments__BlogID__4924D839" FromRole="Blog" ToRole="Comment" />
+          <NavigationProperty Name="Employee" Relationship="MedSysModel.FK_Blog_Employee" FromRole="Blog" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Name="CommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BlogID" Type="Int32" Nullable="false" />
+          <Property Name="MemberID" Type="Int32" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="ParentCommentID" Type="Int32" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Blog" Relationship="MedSysModel.FK__Comments__BlogID__4924D839" FromRole="Comment" ToRole="Blog" />
+          <NavigationProperty Name="Employee" Relationship="MedSysModel.FK__Comments__Employ__4B0D20AB" FromRole="Comment" ToRole="Employee" />
+          <NavigationProperty Name="Comments1" Relationship="MedSysModel.FK__Comments__Parent__4C0144E4" FromRole="Comment" ToRole="Comment1" />
+          <NavigationProperty Name="Comment1" Relationship="MedSysModel.FK__Comments__Parent__4C0144E4" FromRole="Comment1" ToRole="Comment" />
+          <NavigationProperty Name="Member" Relationship="MedSysModel.FK_Comments_Members1" FromRole="Comment" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="Corporation">
+          <Key>
+            <PropertyRef Name="taxID" />
+          </Key>
+          <Property Name="taxID" Type="Int32" Nullable="false" />
+          <Property Name="corporation1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="discount" Type="Double" />
+          <Property Name="contactnumber" Type="Int32" Nullable="false" />
+          <Property Name="address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="middleman" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Members" Relationship="MedSysModel.FK_Member_Corporation" FromRole="Corporation" ToRole="Member" />
+        </EntityType>
+        <EntityType Name="EmployeeClass">
+          <Key>
+            <PropertyRef Name="EmployeeClassID" />
+          </Key>
+          <Property Name="EmployeeClassID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Class" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BlogPermissionID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BlogManagement" Relationship="MedSysModel.FK_EmployeeClass_BlogManagement" FromRole="EmployeeClass" ToRole="BlogManagement" />
+          <NavigationProperty Name="Employees" Relationship="MedSysModel.FK_Employee_EmployeeClass" FromRole="EmployeeClass" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeClassID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeBirthDate" Type="DateTime" Precision="0" />
+          <Property Name="EmployeePhoneNum" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeePassWord" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeePhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Blogs" Relationship="MedSysModel.FK_Blog_Employee" FromRole="Employee" ToRole="Blog" />
+          <NavigationProperty Name="Comments" Relationship="MedSysModel.FK__Comments__Employ__4B0D20AB" FromRole="Employee" ToRole="Comment" />
+          <NavigationProperty Name="EmployeeClass" Relationship="MedSysModel.FK_Employee_EmployeeClass" FromRole="Employee" ToRole="EmployeeClass" />
+        </EntityType>
+        <EntityType Name="HealthReport">
+          <Key>
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberID" Type="Int32" />
+          <Property Name="ReportDate" Type="DateTime" Precision="0" />
+          <Property Name="PlanID" Type="Int32" />
+          <Property Name="ReserveID" Type="Int32" />
+          <Property Name="Paymentstatus" Type="Int32" />
+          <NavigationProperty Name="Member" Relationship="MedSysModel.FK_HealthReport_Member" FromRole="HealthReport" ToRole="Member" />
+          <NavigationProperty Name="Plan" Relationship="MedSysModel.FK_HealthReport_Plan" FromRole="HealthReport" ToRole="Plan" />
+          <NavigationProperty Name="Reserve" Relationship="MedSysModel.FK_HealthReport_Reserve" FromRole="HealthReport" ToRole="Reserve" />
+          <NavigationProperty Name="ReportDetails" Relationship="MedSysModel.FK_ReportDetail_HealthReport" FromRole="HealthReport" ToRole="ReportDetail" />
+          <NavigationProperty Name="ReportTests" Relationship="MedSysModel.FK_ReportTest_HealthReport" FromRole="HealthReport" ToRole="ReportTest" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="itemID" />
+          </Key>
+          <Property Name="itemID" Type="Int32" Nullable="false" />
+          <Property Name="itemName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="itemComment" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="itemPrice" Type="Int32" />
+          <Property Name="projectID" Type="Int32" />
+          <Property Name="itemUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="itemRangeMin" Type="Int32" />
+          <Property Name="itemRangeMax" Type="Int32" />
+          <Property Name="Mmin" Type="Int32" />
+          <Property Name="Mmax" Type="Int32" />
+          <Property Name="Fmin" Type="Int32" />
+          <Property Name="Fmax" Type="Int32" />
+          <Property Name="itemRange" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Project" Relationship="MedSysModel.FK_Item__subproject" FromRole="Item" ToRole="Project" />
+          <NavigationProperty Name="ReportDetails" Relationship="MedSysModel.FK_ReportDetail_Item" FromRole="Item" ToRole="ReportDetail" />
+          <NavigationProperty Name="ReportTests" Relationship="MedSysModel.FK_ReportTest_Item" FromRole="Item" ToRole="ReportTest" />
+          <NavigationProperty Name="ReservedSubs" Relationship="MedSysModel.FK_ReservedSub_Item_" FromRole="Item" ToRole="ReservedSub" />
+          <NavigationProperty Name="subProjectBridges" Relationship="MedSysModel.FK_subProjectBridges_Item_" FromRole="Item" ToRole="subProjectBridge" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="memberId" />
+          </Key>
+          <Property Name="memberId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="memberName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="memberGender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="memberBirthdate" Type="DateTime" Precision="0" />
+          <Property Name="memberPhone" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="memberEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="memberAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="memberContactNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="memberNickname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="memberPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="taxID" Type="Int32" />
+          <Property Name="memberAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Comments" Relationship="MedSysModel.FK_Comments_Members1" FromRole="Member" ToRole="Comment" />
+          <NavigationProperty Name="Corporation" Relationship="MedSysModel.FK_Member_Corporation" FromRole="Member" ToRole="Corporation" />
+          <NavigationProperty Name="HealthReports" Relationship="MedSysModel.FK_HealthReport_Member" FromRole="Member" ToRole="HealthReport" />
+          <NavigationProperty Name="Orders" Relationship="MedSysModel.FK_Order_Member" FromRole="Member" ToRole="Order" />
+          <NavigationProperty Name="Reserves" Relationship="MedSysModel.FK_Reserve_Members" FromRole="Member" ToRole="Reserve" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="orderID" />
+          </Key>
+          <Property Name="orderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orderDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="memberId" Type="Int32" />
+          <Property Name="shipID" Type="Int32" />
+          <Property Name="payID" Type="Int32" />
+          <Property Name="stateID" Type="Int32" />
+          <Property Name="shipDate" Type="DateTime" Precision="0" />
+          <Property Name="deliveryDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Member" Relationship="MedSysModel.FK_Order_Member" FromRole="Order" ToRole="Member" />
+          <NavigationProperty Name="OrderPay" Relationship="MedSysModel.FK_Order_OrderPay" FromRole="Order" ToRole="OrderPay" />
+          <NavigationProperty Name="OrderShip" Relationship="MedSysModel.FK_Order_OrderShip" FromRole="Order" ToRole="OrderShip" />
+          <NavigationProperty Name="OrderState" Relationship="MedSysModel.FK_Order_OrderState" FromRole="Order" ToRole="OrderState" />
+          <NavigationProperty Name="OrderDetails" Relationship="MedSysModel.FK_OrderDetails_Order" FromRole="Order" ToRole="OrderDetail" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+          </Key>
+          <Property Name="OrderDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orderID" Type="Int32" />
+          <Property Name="productID" Type="Int32" />
+          <Property Name="unitPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="quantity" Type="Int32" />
+          <NavigationProperty Name="Order" Relationship="MedSysModel.FK_OrderDetails_Order" FromRole="OrderDetail" ToRole="Order" />
+          <NavigationProperty Name="Product" Relationship="MedSysModel.FK_OrderDetails_Products" FromRole="OrderDetail" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="OrderPay">
+          <Key>
+            <PropertyRef Name="PayID" />
+          </Key>
+          <Property Name="PayID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="MedSysModel.FK_Order_OrderPay" FromRole="OrderPay" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="OrderShip">
+          <Key>
+            <PropertyRef Name="shipID" />
+          </Key>
+          <Property Name="shipID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="shipName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="MedSysModel.FK_Order_OrderShip" FromRole="OrderShip" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="OrderState">
+          <Key>
+            <PropertyRef Name="stateID" />
+          </Key>
+          <Property Name="stateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="stateDetailed" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="MedSysModel.FK_Order_OrderState" FromRole="OrderState" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Plan">
+          <Key>
+            <PropertyRef Name="planId" />
+          </Key>
+          <Property Name="planId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="planName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="planDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HealthReports" Relationship="MedSysModel.FK_HealthReport_Plan" FromRole="Plan" ToRole="HealthReport" />
+          <NavigationProperty Name="PlanRefs" Relationship="MedSysModel.FK_PlanRef_Plan" FromRole="Plan" ToRole="PlanRef" />
+          <NavigationProperty Name="Reserves" Relationship="MedSysModel.FK_Reserve_Plan" FromRole="Plan" ToRole="Reserve" />
+        </EntityType>
+        <EntityType Name="PlanRef">
+          <Key>
+            <PropertyRef Name="planbridgeId" />
+          </Key>
+          <Property Name="planbridgeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="planID" Type="Int32" Nullable="false" />
+          <Property Name="projectID" Type="Int32" />
+          <NavigationProperty Name="Plan" Relationship="MedSysModel.FK_PlanRef_Plan" FromRole="PlanRef" ToRole="Plan" />
+          <NavigationProperty Name="Project" Relationship="MedSysModel.FK_Planbrigee_subproject" FromRole="PlanRef" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="License" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ingredient" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="UnitsInStock" Type="Int32" />
+          <Property Name="Discontinued" Type="Boolean" />
+          <NavigationProperty Name="OrderDetails" Relationship="MedSysModel.FK_OrderDetails_Products" FromRole="Product" ToRole="OrderDetail" />
+          <NavigationProperty Name="ProductsClassifications" Relationship="MedSysModel.FK_ProductsClassification_Products" FromRole="Product" ToRole="ProductsClassification" />
+        </EntityType>
+        <EntityType Name="ProductsCategory">
+          <Key>
+            <PropertyRef Name="CategoriesID" />
+          </Key>
+          <Property Name="CategoriesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoriesName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductsClassifications" Relationship="MedSysModel.FK_ProductsClassification_ProductsCategories" FromRole="ProductsCategory" ToRole="ProductsClassification" />
+        </EntityType>
+        <EntityType Name="ProductsClassification">
+          <Key>
+            <PropertyRef Name="ProductsClassification1" />
+          </Key>
+          <Property Name="ProductsClassification1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="CategoriesID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="MedSysModel.FK_ProductsClassification_Products" FromRole="ProductsClassification" ToRole="Product" />
+          <NavigationProperty Name="ProductsCategory" Relationship="MedSysModel.FK_ProductsClassification_ProductsCategories" FromRole="ProductsClassification" ToRole="ProductsCategory" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="projectID" />
+          </Key>
+          <Property Name="projectID" Type="Int32" Nullable="false" />
+          <Property Name="ProjectName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="projectContent" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="projectPrice" Type="Double" />
+          <NavigationProperty Name="Items" Relationship="MedSysModel.FK_Item__subproject" FromRole="Project" ToRole="Item" />
+          <NavigationProperty Name="PlanRefs" Relationship="MedSysModel.FK_Planbrigee_subproject" FromRole="Project" ToRole="PlanRef" />
+          <NavigationProperty Name="subProjectBridges" Relationship="MedSysModel.FK_subProjectBridges_subproject" FromRole="Project" ToRole="subProjectBridge" />
+        </EntityType>
+        <EntityType Name="ReportDetail">
+          <Key>
+            <PropertyRef Name="ReportDetailID" />
+          </Key>
+          <Property Name="ReportDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportID" Type="Int32" />
+          <Property Name="itemID" Type="Int32" />
+          <Property Name="result" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HealthReport" Relationship="MedSysModel.FK_ReportDetail_HealthReport" FromRole="ReportDetail" ToRole="HealthReport" />
+          <NavigationProperty Name="Item" Relationship="MedSysModel.FK_ReportDetail_Item" FromRole="ReportDetail" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="Reserve">
+          <Key>
+            <PropertyRef Name="ReserveID" />
+          </Key>
+          <Property Name="ReserveID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="memberID" Type="Int32" />
+          <Property Name="planID" Type="Int32" />
+          <Property Name="ReserveDate" Type="DateTime" Precision="0" />
+          <Property Name="ReserveState" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HealthReports" Relationship="MedSysModel.FK_HealthReport_Reserve" FromRole="Reserve" ToRole="HealthReport" />
+          <NavigationProperty Name="Member" Relationship="MedSysModel.FK_Reserve_Members" FromRole="Reserve" ToRole="Member" />
+          <NavigationProperty Name="Plan" Relationship="MedSysModel.FK_Reserve_Plan" FromRole="Reserve" ToRole="Plan" />
+          <NavigationProperty Name="ReservedSubs" Relationship="MedSysModel.FK_ReservedSub_Reserve" FromRole="Reserve" ToRole="ReservedSub" />
+        </EntityType>
+        <EntityType Name="ReservedSub">
+          <Key>
+            <PropertyRef Name="subreservedID" />
+          </Key>
+          <Property Name="subreservedID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="reservedID" Type="Int32" Nullable="false" />
+          <Property Name="itemID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Item" Relationship="MedSysModel.FK_ReservedSub_Item_" FromRole="ReservedSub" ToRole="Item" />
+          <NavigationProperty Name="Reserve" Relationship="MedSysModel.FK_ReservedSub_Reserve" FromRole="ReservedSub" ToRole="Reserve" />
+        </EntityType>
+        <EntityType Name="subProjectBridge">
+          <Key>
+            <PropertyRef Name="SubProjectBridgeID" />
+          </Key>
+          <Property Name="SubProjectBridgeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="Int32" />
+          <Property Name="ItemID" Type="Int32" />
+          <NavigationProperty Name="Item" Relationship="MedSysModel.FK_subProjectBridges_Item_" FromRole="subProjectBridge" ToRole="Item" />
+          <NavigationProperty Name="Project" Relationship="MedSysModel.FK_subProjectBridges_subproject" FromRole="subProjectBridge" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="ReportTest">
+          <Key>
+            <PropertyRef Name="ReportDetailID" />
+            <PropertyRef Name="ReportID" />
+          </Key>
+          <Property Name="ReportDetailID" Type="Int32" Nullable="false" />
+          <Property Name="ReportID" Type="Int32" Nullable="false" />
+          <Property Name="itemID" Type="Int32" />
+          <Property Name="result" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HealthReport" Relationship="MedSysModel.FK_ReportTest_HealthReport" FromRole="ReportTest" ToRole="HealthReport" />
+          <NavigationProperty Name="Item" Relationship="MedSysModel.FK_ReportTest_Item" FromRole="ReportTest" ToRole="Item" />
+        </EntityType>
+        <Association Name="FK_Blog_ArticleCat">
+          <End Type="MedSysModel.BlogCategory" Role="BlogCategory" Multiplicity="1" />
+          <End Type="MedSysModel.Blog" Role="Blog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BlogCategory">
+              <PropertyRef Name="BlogClassID" />
+            </Principal>
+            <Dependent Role="Blog">
+              <PropertyRef Name="ArticleClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeClass_BlogManagement">
+          <End Type="MedSysModel.BlogManagement" Role="BlogManagement" Multiplicity="1" />
+          <End Type="MedSysModel.EmployeeClass" Role="EmployeeClass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BlogManagement">
+              <PropertyRef Name="BlogPermissionID" />
+            </Principal>
+            <Dependent Role="EmployeeClass">
+              <PropertyRef Name="BlogPermissionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comments__BlogID__4924D839">
+          <End Type="MedSysModel.Blog" Role="Blog" Multiplicity="1" />
+          <End Type="MedSysModel.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blog">
+              <PropertyRef Name="BlogID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="BlogID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Blog_Employee">
+          <End Type="MedSysModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="MedSysModel.Blog" Role="Blog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Blog">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comments__Employ__4B0D20AB">
+          <End Type="MedSysModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="MedSysModel.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Comments__Parent__4C0144E4">
+          <End Type="MedSysModel.Comment" Role="Comment" Multiplicity="0..1" />
+          <End Type="MedSysModel.Comment" Role="Comment1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="CommentID" />
+            </Principal>
+            <Dependent Role="Comment1">
+              <PropertyRef Name="ParentCommentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comments_Members1">
+          <End Type="MedSysModel.Member" Role="Member" Multiplicity="0..1" />
+          <End Type="MedSysModel.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="memberId" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_Corporation">
+          <End Type="MedSysModel.Corporation" Role="Corporation" Multiplicity="0..1" />
+          <End Type="MedSysModel.Member" Role="Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Corporation">
+              <PropertyRef Name="taxID" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="taxID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_EmployeeClass">
+          <End Type="MedSysModel.EmployeeClass" Role="EmployeeClass" Multiplicity="1" />
+          <End Type="MedSysModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeClass">
+              <PropertyRef Name="EmployeeClassID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="EmployeeClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HealthReport_Member">
+          <End Type="MedSysModel.Member" Role="Member" Multiplicity="0..1" />
+          <End Type="MedSysModel.HealthReport" Role="HealthReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="memberId" />
+            </Principal>
+            <Dependent Role="HealthReport">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HealthReport_Plan">
+          <End Type="MedSysModel.Plan" Role="Plan" Multiplicity="0..1" />
+          <End Type="MedSysModel.HealthReport" Role="HealthReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan">
+              <PropertyRef Name="planId" />
+            </Principal>
+            <Dependent Role="HealthReport">
+              <PropertyRef Name="PlanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HealthReport_Reserve">
+          <End Type="MedSysModel.Reserve" Role="Reserve" Multiplicity="0..1" />
+          <End Type="MedSysModel.HealthReport" Role="HealthReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reserve">
+              <PropertyRef Name="ReserveID" />
+            </Principal>
+            <Dependent Role="HealthReport">
+              <PropertyRef Name="ReserveID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportDetail_HealthReport">
+          <End Type="MedSysModel.HealthReport" Role="HealthReport" Multiplicity="0..1" />
+          <End Type="MedSysModel.ReportDetail" Role="ReportDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HealthReport">
+              <PropertyRef Name="ReportID" />
+            </Principal>
+            <Dependent Role="ReportDetail">
+              <PropertyRef Name="ReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportTest_HealthReport">
+          <End Type="MedSysModel.HealthReport" Role="HealthReport" Multiplicity="1" />
+          <End Type="MedSysModel.ReportTest" Role="ReportTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HealthReport">
+              <PropertyRef Name="ReportID" />
+            </Principal>
+            <Dependent Role="ReportTest">
+              <PropertyRef Name="ReportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item__subproject">
+          <End Type="MedSysModel.Project" Role="Project" Multiplicity="0..1" />
+          <End Type="MedSysModel.Item" Role="Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="projectID" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="projectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportDetail_Item">
+          <End Type="MedSysModel.Item" Role="Item" Multiplicity="0..1" />
+          <End Type="MedSysModel.ReportDetail" Role="ReportDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="itemID" />
+            </Principal>
+            <Dependent Role="ReportDetail">
+              <PropertyRef Name="itemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportTest_Item">
+          <End Type="MedSysModel.Item" Role="Item" Multiplicity="0..1" />
+          <End Type="MedSysModel.ReportTest" Role="ReportTest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="itemID" />
+            </Principal>
+            <Dependent Role="ReportTest">
+              <PropertyRef Name="itemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReservedSub_Item_">
+          <End Type="MedSysModel.Item" Role="Item" Multiplicity="1" />
+          <End Type="MedSysModel.ReservedSub" Role="ReservedSub" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="itemID" />
+            </Principal>
+            <Dependent Role="ReservedSub">
+              <PropertyRef Name="itemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_subProjectBridges_Item_">
+          <End Type="MedSysModel.Item" Role="Item" Multiplicity="0..1" />
+          <End Type="MedSysModel.subProjectBridge" Role="subProjectBridge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="itemID" />
+            </Principal>
+            <Dependent Role="subProjectBridge">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Member">
+          <End Type="MedSysModel.Member" Role="Member" Multiplicity="0..1" />
+          <End Type="MedSysModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="memberId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="memberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reserve_Members">
+          <End Type="MedSysModel.Member" Role="Member" Multiplicity="0..1" />
+          <End Type="MedSysModel.Reserve" Role="Reserve" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="memberId" />
+            </Principal>
+            <Dependent Role="Reserve">
+              <PropertyRef Name="memberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_OrderPay">
+          <End Type="MedSysModel.OrderPay" Role="OrderPay" Multiplicity="0..1" />
+          <End Type="MedSysModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderPay">
+              <PropertyRef Name="PayID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="payID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_OrderShip">
+          <End Type="MedSysModel.OrderShip" Role="OrderShip" Multiplicity="0..1" />
+          <End Type="MedSysModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderShip">
+              <PropertyRef Name="shipID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="shipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_OrderState">
+          <End Type="MedSysModel.OrderState" Role="OrderState" Multiplicity="0..1" />
+          <End Type="MedSysModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderState">
+              <PropertyRef Name="stateID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="stateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Order">
+          <End Type="MedSysModel.Order" Role="Order" Multiplicity="0..1" />
+          <End Type="MedSysModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="orderID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="orderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Products">
+          <End Type="MedSysModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="MedSysModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlanRef_Plan">
+          <End Type="MedSysModel.Plan" Role="Plan" Multiplicity="1" />
+          <End Type="MedSysModel.PlanRef" Role="PlanRef" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan">
+              <PropertyRef Name="planId" />
+            </Principal>
+            <Dependent Role="PlanRef">
+              <PropertyRef Name="planID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reserve_Plan">
+          <End Type="MedSysModel.Plan" Role="Plan" Multiplicity="0..1" />
+          <End Type="MedSysModel.Reserve" Role="Reserve" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan">
+              <PropertyRef Name="planId" />
+            </Principal>
+            <Dependent Role="Reserve">
+              <PropertyRef Name="planID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Planbrigee_subproject">
+          <End Type="MedSysModel.Project" Role="Project" Multiplicity="0..1" />
+          <End Type="MedSysModel.PlanRef" Role="PlanRef" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="projectID" />
+            </Principal>
+            <Dependent Role="PlanRef">
+              <PropertyRef Name="projectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsClassification_Products">
+          <End Type="MedSysModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="MedSysModel.ProductsClassification" Role="ProductsClassification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductsClassification">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsClassification_ProductsCategories">
+          <End Type="MedSysModel.ProductsCategory" Role="ProductsCategory" Multiplicity="1" />
+          <End Type="MedSysModel.ProductsClassification" Role="ProductsClassification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductsCategory">
+              <PropertyRef Name="CategoriesID" />
+            </Principal>
+            <Dependent Role="ProductsClassification">
+              <PropertyRef Name="CategoriesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_subProjectBridges_subproject">
+          <End Type="MedSysModel.Project" Role="Project" Multiplicity="0..1" />
+          <End Type="MedSysModel.subProjectBridge" Role="subProjectBridge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="projectID" />
+            </Principal>
+            <Dependent Role="subProjectBridge">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReservedSub_Reserve">
+          <End Type="MedSysModel.Reserve" Role="Reserve" Multiplicity="1" />
+          <End Type="MedSysModel.ReservedSub" Role="ReservedSub" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reserve">
+              <PropertyRef Name="ReserveID" />
+            </Principal>
+            <Dependent Role="ReservedSub">
+              <PropertyRef Name="reservedID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MedSysModelStoreContainer" CdmEntityContainer="MedSysEntities">
+          <EntitySetMapping Name="BlogCategories">
+            <EntityTypeMapping TypeName="MedSysModel.BlogCategory">
+              <MappingFragment StoreEntitySet="BlogCategory">
+                <ScalarProperty Name="BlogCategory1" ColumnName="BlogCategory" />
+                <ScalarProperty Name="BlogClassID" ColumnName="BlogClassID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BlogManagements">
+            <EntityTypeMapping TypeName="MedSysModel.BlogManagement">
+              <MappingFragment StoreEntitySet="BlogManagement">
+                <ScalarProperty Name="PermissionType" ColumnName="PermissionType" />
+                <ScalarProperty Name="BlogPermissionID" ColumnName="BlogPermissionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Blogs">
+            <EntityTypeMapping TypeName="MedSysModel.Blog">
+              <MappingFragment StoreEntitySet="Blogs">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="BlogImage" ColumnName="BlogImage" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Views" ColumnName="Views" />
+                <ScalarProperty Name="ArticleClassID" ColumnName="ArticleClassID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="MedSysModel.Comment">
+              <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="ParentCommentID" ColumnName="ParentCommentID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="BlogID" ColumnName="BlogID" />
+                <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Corporations">
+            <EntityTypeMapping TypeName="MedSysModel.Corporation">
+              <MappingFragment StoreEntitySet="Corporation">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="middleman" ColumnName="middleman" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="contactnumber" ColumnName="contactnumber" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="corporation1" ColumnName="corporation" />
+                <ScalarProperty Name="taxID" ColumnName="taxID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeClasses">
+            <EntityTypeMapping TypeName="MedSysModel.EmployeeClass">
+              <MappingFragment StoreEntitySet="EmployeeClass">
+                <ScalarProperty Name="BlogPermissionID" ColumnName="BlogPermissionID" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="EmployeeClassID" ColumnName="EmployeeClassID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="MedSysModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="EmployeePhoto" ColumnName="EmployeePhoto" />
+                <ScalarProperty Name="EmployeePassWord" ColumnName="EmployeePassWord" />
+                <ScalarProperty Name="EmployeeEmail" ColumnName="EmployeeEmail" />
+                <ScalarProperty Name="EmployeePhoneNum" ColumnName="EmployeePhoneNum" />
+                <ScalarProperty Name="EmployeeBirthDate" ColumnName="EmployeeBirthDate" />
+                <ScalarProperty Name="EmployeeClassID" ColumnName="EmployeeClassID" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HealthReports">
+            <EntityTypeMapping TypeName="MedSysModel.HealthReport">
+              <MappingFragment StoreEntitySet="HealthReport">
+                <ScalarProperty Name="Paymentstatus" ColumnName="Paymentstatus" />
+                <ScalarProperty Name="ReserveID" ColumnName="ReserveID" />
+                <ScalarProperty Name="PlanID" ColumnName="PlanID" />
+                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="MedSysModel.Item">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="itemRange" ColumnName="itemRange" />
+                <ScalarProperty Name="Fmax" ColumnName="Fmax" />
+                <ScalarProperty Name="Fmin" ColumnName="Fmin" />
+                <ScalarProperty Name="Mmax" ColumnName="Mmax" />
+                <ScalarProperty Name="Mmin" ColumnName="Mmin" />
+                <ScalarProperty Name="itemRangeMax" ColumnName="itemRangeMax" />
+                <ScalarProperty Name="itemRangeMin" ColumnName="itemRangeMin" />
+                <ScalarProperty Name="itemUnit" ColumnName="itemUnit" />
+                <ScalarProperty Name="projectID" ColumnName="projectID" />
+                <ScalarProperty Name="itemPrice" ColumnName="itemPrice" />
+                <ScalarProperty Name="itemComment" ColumnName="itemComment" />
+                <ScalarProperty Name="itemName" ColumnName="itemName" />
+                <ScalarProperty Name="itemID" ColumnName="itemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="MedSysModel.Member">
+              <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="memberAccount" ColumnName="memberAccount" />
+                <ScalarProperty Name="taxID" ColumnName="taxID" />
+                <ScalarProperty Name="memberPassword" ColumnName="memberPassword" />
+                <ScalarProperty Name="memberNickname" ColumnName="memberNickname" />
+                <ScalarProperty Name="memberContactNumber" ColumnName="memberContactNumber" />
+                <ScalarProperty Name="memberAddress" ColumnName="memberAddress" />
+                <ScalarProperty Name="memberEmail" ColumnName="memberEmail" />
+                <ScalarProperty Name="memberPhone" ColumnName="memberPhone" />
+                <ScalarProperty Name="memberBirthdate" ColumnName="memberBirthdate" />
+                <ScalarProperty Name="memberGender" ColumnName="memberGender" />
+                <ScalarProperty Name="memberName" ColumnName="memberName" />
+                <ScalarProperty Name="memberId" ColumnName="memberId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="MedSysModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="deliveryDate" ColumnName="deliveryDate" />
+                <ScalarProperty Name="shipDate" ColumnName="shipDate" />
+                <ScalarProperty Name="stateID" ColumnName="stateID" />
+                <ScalarProperty Name="payID" ColumnName="payID" />
+                <ScalarProperty Name="shipID" ColumnName="shipID" />
+                <ScalarProperty Name="memberId" ColumnName="memberId" />
+                <ScalarProperty Name="orderDate" ColumnName="orderDate" />
+                <ScalarProperty Name="orderID" ColumnName="orderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="MedSysModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="unitPrice" ColumnName="unitPrice" />
+                <ScalarProperty Name="productID" ColumnName="productID" />
+                <ScalarProperty Name="orderID" ColumnName="orderID" />
+                <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderPays">
+            <EntityTypeMapping TypeName="MedSysModel.OrderPay">
+              <MappingFragment StoreEntitySet="OrderPay">
+                <ScalarProperty Name="PayName" ColumnName="PayName" />
+                <ScalarProperty Name="PayID" ColumnName="PayID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderShips">
+            <EntityTypeMapping TypeName="MedSysModel.OrderShip">
+              <MappingFragment StoreEntitySet="OrderShip">
+                <ScalarProperty Name="shipName" ColumnName="shipName" />
+                <ScalarProperty Name="shipID" ColumnName="shipID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderStates">
+            <EntityTypeMapping TypeName="MedSysModel.OrderState">
+              <MappingFragment StoreEntitySet="OrderState">
+                <ScalarProperty Name="stateDetailed" ColumnName="stateDetailed" />
+                <ScalarProperty Name="stateName" ColumnName="stateName" />
+                <ScalarProperty Name="stateID" ColumnName="stateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plans">
+            <EntityTypeMapping TypeName="MedSysModel.Plan">
+              <MappingFragment StoreEntitySet="Plan">
+                <ScalarProperty Name="planDescription" ColumnName="planDescription" />
+                <ScalarProperty Name="planName" ColumnName="planName" />
+                <ScalarProperty Name="planId" ColumnName="planId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlanRefs">
+            <EntityTypeMapping TypeName="MedSysModel.PlanRef">
+              <MappingFragment StoreEntitySet="PlanRef">
+                <ScalarProperty Name="projectID" ColumnName="projectID" />
+                <ScalarProperty Name="planID" ColumnName="planID" />
+                <ScalarProperty Name="planbridgeId" ColumnName="planbridgeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="MedSysModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Discontinued" ColumnName="Discontinued" />
+                <ScalarProperty Name="UnitsInStock" ColumnName="UnitsInStock" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Ingredient" ColumnName="Ingredient" />
+                <ScalarProperty Name="License" ColumnName="License" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductsCategories">
+            <EntityTypeMapping TypeName="MedSysModel.ProductsCategory">
+              <MappingFragment StoreEntitySet="ProductsCategories">
+                <ScalarProperty Name="CategoriesName" ColumnName="CategoriesName" />
+                <ScalarProperty Name="CategoriesID" ColumnName="CategoriesID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductsClassifications">
+            <EntityTypeMapping TypeName="MedSysModel.ProductsClassification">
+              <MappingFragment StoreEntitySet="ProductsClassification">
+                <ScalarProperty Name="CategoriesID" ColumnName="CategoriesID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductsClassification1" ColumnName="ProductsClassification" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="MedSysModel.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="projectPrice" ColumnName="projectPrice" />
+                <ScalarProperty Name="projectContent" ColumnName="projectContent" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="projectID" ColumnName="projectID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReportDetails">
+            <EntityTypeMapping TypeName="MedSysModel.ReportDetail">
+              <MappingFragment StoreEntitySet="ReportDetail">
+                <ScalarProperty Name="result" ColumnName="result" />
+                <ScalarProperty Name="itemID" ColumnName="itemID" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+                <ScalarProperty Name="ReportDetailID" ColumnName="ReportDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reserves">
+            <EntityTypeMapping TypeName="MedSysModel.Reserve">
+              <MappingFragment StoreEntitySet="Reserve">
+                <ScalarProperty Name="ReserveState" ColumnName="ReserveState" />
+                <ScalarProperty Name="ReserveDate" ColumnName="ReserveDate" />
+                <ScalarProperty Name="planID" ColumnName="planID" />
+                <ScalarProperty Name="memberID" ColumnName="memberID" />
+                <ScalarProperty Name="ReserveID" ColumnName="ReserveID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReservedSubs">
+            <EntityTypeMapping TypeName="MedSysModel.ReservedSub">
+              <MappingFragment StoreEntitySet="ReservedSub">
+                <ScalarProperty Name="itemID" ColumnName="itemID" />
+                <ScalarProperty Name="reservedID" ColumnName="reservedID" />
+                <ScalarProperty Name="subreservedID" ColumnName="subreservedID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="subProjectBridges">
+            <EntityTypeMapping TypeName="MedSysModel.subProjectBridge">
+              <MappingFragment StoreEntitySet="subProjectBridges">
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="SubProjectBridgeID" ColumnName="SubProjectBridgeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReportTests">
+            <EntityTypeMapping TypeName="MedSysModel.ReportTest">
+              <MappingFragment StoreEntitySet="ReportTest">
+                <ScalarProperty Name="result" ColumnName="result" />
+                <ScalarProperty Name="itemID" ColumnName="itemID" />
+                <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+                <ScalarProperty Name="ReportDetailID" ColumnName="ReportDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

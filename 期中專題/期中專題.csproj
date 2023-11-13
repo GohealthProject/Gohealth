@@ -240,10 +240,13 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MedSys.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="DataDB\MedSys3.bak" />
     <None Include="MedSys.edmx.diagram">
       <DependentUpon>MedSys.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="PowerBI\MedSys%28plan%29.pbix" />
+    <None Include="PowerBI\MedSysPowerBI.pbix" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
